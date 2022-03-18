@@ -123,9 +123,10 @@ int game()
         cout << "You failed to guess the word in 6 guesses. The word was: " << word << endl;
     }
     
-    cout << "Do you want to play again? y/n or yes/no" << endl;
+
     while (true)
     {
+        cout << "Do you want to play again? y/n or yes/no" << endl;
         cin >> input;
         if (input == "y" || input == "yes")
         {
@@ -138,7 +139,7 @@ int game()
         }
         else
         {
-            cout << "Invalid reply";
+            cout << "Invalid reply" << endl;
         }
     }
 
