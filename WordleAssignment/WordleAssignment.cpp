@@ -6,7 +6,8 @@
 #define BACKGROUND(color,text) "\033[3;42;" << static_cast<int>(color) << "m" << text << "\033[0m"
 using namespace std;
 
-string convertToUpper(string input)
+string convertToUpper(string input) // feedback: argument can be a string ref, to avoid copying. Also function could just modify the original string in this case, without returning
+                                    // a new one
 {
     string newInput = input;
     for (int i = 0; i < input.length(); i++)
@@ -22,7 +23,7 @@ enum class BackgroundColor : int
     Yellow = 43,
     Grey = 100
 };
-string GetWord(string fileName)
+string GetWord(string fileName) // feedback: argument can be a string ref, to avoid copying
 {
     ifstream wordFile(fileName);
     string word;
@@ -37,10 +38,11 @@ string GetWord(string fileName)
     else wordFile.close();
     srand(time(NULL));
 
-    string randomWord = wordCollection[rand() % wordCollection.size()];
+    string randomWord = wordCollection[rand() % wordCollection.size()]; // feedback: your could return wordCollection[rand() % wordCollection.size()] directly, no need for
+                                                                        // and intermediate variable
     return randomWord;
 }
-bool checkvalid(string input)
+bool checkvalid(string input) // feedback: argument can be a string ref, to avoid copying
 {
     bool validInput = true;
     for (int i = 0; i < input.length(); i++)
@@ -77,7 +79,7 @@ int game()
             guesses++;
             system("cls");
             cout << "Guess: " << guesses << endl;
-            for (string i : guessedWords)
+            for (string i : guessedWords) // feedback: i could be string& i, to avoid copying
             {
                 for (int l = 0; l < i.length(); l++)
                 {
